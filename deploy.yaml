@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gender
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      bb: gender
+  template:
+    metadata:
+      labels:
+        bb: gender
+    spec:
+      containers:
+      - name: demo
+        image: gender-rf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bb-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    bb: gender
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 30001

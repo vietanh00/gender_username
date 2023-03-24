@@ -1,0 +1,50 @@
+
+
+# Docker stop containner
+
+# List containers running
+sudo docker container ls
+# List all container
+sudo docker container ls --all
+
+# Stop container
+sudo docker stop 91d1812ba362
+
+
+# PUSH TO HUB
+sudo docker login
+sudo docker tag 3f1309572699 trnt/demo
+sudo docker push trnt/demo
+
+
+# PULL FROM HUB (https://hub.docker.com/repository/docker/trnt/demo)
+docker pull trnt/demo:latest
+
+
+
+# Re Tag
+docker image tag trnt/demo:latest gender-rf:v1
+
+# list images
+docker images
+
+# Run 
+docker run -it --rm -p 8000:8000 gender-rf:v1
+
+
+
+
+# DEPLOY USING KUBECTL
+# Create deploy.yaml
+
+kubectl apply -f deploy.yaml
+kubectl get deployments
+kubectl get services
+
+
+
+# Delete all
+kubectl delete all --all --all-namespaces
+
+# Check status
+kubectl rollout status deployment.apps/gender
